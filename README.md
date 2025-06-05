@@ -8,8 +8,8 @@ Assumption about the api:
 - if you want a common location, eg `http://localhost:8080` that is covered
 - read and readAll do a GET on `prefix/<id-parameter>` and `prefix` (only) respectively
 - create maps to POST on the prefix (only), json in request-body (function parameter)
-- update maps to PUT on the prefix, json in request-body (function parameter)
-- delete maps to DELETE on `prefix/<id-parameter>` and expects something json-y to return from the api (so .json can parse the response) -- alternatively use the deleteResponse function, that should work, too.
+- update maps to PUT on `prefix/<id-parameter>`, json in request-body (both are function parameters). Note: As with the rest, the API-behaviour is defined by how the API behaves ("id" conflicts are the backends responsibility)
+- delete maps to DELETE on `prefix/<id-parameter>` and expects something json-y to return from the api (so .json can parse the response) -- alternatively use the promise from deleteResponse function instead for response-checking, there is no json-assumption there.
 
 You can, in theory, customize this heavily. 
 Most obvious place for precise single-place additions
