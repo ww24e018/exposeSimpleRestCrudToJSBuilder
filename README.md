@@ -6,10 +6,10 @@ js/module based code to get/define a js interface for a http/json(rest) interfac
 Assumption about the api:
 - there is a common prefix for each sub-api, e.g. `/thethingtocrud`
 - if you want a common location, eg `http://localhost:8080` that is covered
-- read and readAll do a GET on `prefix/<id-parameter>` and `prefix` (only) respectively
-- create maps to POST on the prefix (only), json in request-body (function parameter)
-- update maps to PUT on `prefix/<id-parameter>`, json in request-body (both are function parameters). Note: As with the rest, the API-behaviour is defined by how the API behaves ("id" conflicts are the backends responsibility)
-- delete maps to DELETE on `prefix/<id-parameter>` and expects something json-y to return from the api (so .json can parse the response) -- alternatively use the promise from deleteResponse function instead for response-checking, there is no json-assumption there.
+- `.read` and `.readAll` do a _GET_ on `prefix/<id-parameter>` and `prefix` (only) respectively
+- `.create` does a _POST_ on the `prefix` (only), json in request-body (function parameter)
+- `.update` does a _PUT_ on `prefix/<id-parameter>`, json in request-body (both are function parameters). Note: As with the rest, the API-behaviour is defined by how the API behaves ("id" conflicts are the backends responsibility)
+- `.delete` does a _DELETE_ on `prefix/<id-parameter>` and expects something json-y to return from the api (so .json can parse the response) -- alternatively use the promise from deleteResponse function instead for response-checking, there is no json-assumption there.
 
 You can, in theory, customize this heavily. 
 Most obvious place for precise single-place additions
@@ -20,7 +20,7 @@ You could also use the wrapper to create single-entity apis
 in single/individual files. Then customization could happen there, too.
 
 You can also extend/modify the wrapper of course.
-The trick *then* might be to consciously *not* using the
+The trick *then* might be to consciously *not* use the
 apis the server does not, in fact, implement. :) 
 
 ## configuration
